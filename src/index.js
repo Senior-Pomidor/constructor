@@ -3,7 +3,7 @@ const model = [
 	{
 		// заголовок
 		type: 'title',
-		value: 'Hello World from JS'
+		value: 'Hello World from JS!'
 	},
 	{
 		// параграф
