@@ -1,5 +1,8 @@
+// импорт модулей
 import { model } from './model.js'
-import { title, text, column, image} from './templates.js'
+import { title, text, columns, image } from './templates.js'
+// глобальный импорт стилей
+import './styles/main.css'
 
 // переменные DOM-элементы будем именовать с $ чтобы отличать от обычных переменных
 const $site = document.querySelector('#site')

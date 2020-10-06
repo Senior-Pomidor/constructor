@@ -117,68 +117,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"model.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.model = void 0;
-// модель блоков
-var model = [{
-  // заголовок
-  type: 'title',
-  value: 'Hello World from JS!'
-}, {
-  // параграф
-  type: 'text',
-  value: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.'
-}, {
-  // колонки
-  type: 'columns',
-  value: ['11111111', '22222222', '33333333']
-}, {
-  type: 'image',
-  value: './assets/image.png'
-}];
-exports.model = model;
-},{}],"templates.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.title = title;
-exports.text = text;
-exports.columns = columns;
-exports.image = image;
-
-// pure functions - функции которые зависят только от аргументов
-// не зависят от глобального контекста
-// функции генерации html для различных блоков
-function title(block) {
-  // генерация html Заголовка
-  return "\n\t\t<div class=\"row\">\n\t\t\t<div class=\"col-sm\">\n\t\t\t\t<h1>".concat(block.value, "</h1>\n\t\t\t</div>\n\t\t</div>\n\t");
-}
-
-function text(block) {
-  // генерация html параграфа
-  return "\n\t\t<div class=\"row\">\n\t\t\t<div class=\"col-sm\">\n\t\t\t\t<p>\n\t\t\t\t\t".concat(block.value, "\n\t\t\t\t</p>\n\t\t\t</div>\n\t\t</div>\n\t");
-}
-
-function columns(block) {
-  // генерация html колонок
-  var html = block.value.map(function (text) {
-    return "\n\t\t<div class=\"col-sm\">\n\t\t\t".concat(text, "\n\t\t</div>\n\t");
-  });
-  return "\n\t\t<div class=\"row\">\n\t\t\t".concat(html.join(''), "\n\t\t</div>\n\t"); // вывод элементов массива в строку разделяется запятыми
-  // .join('') это устраняет
-}
-
-function image(block) {
-  return "\n\t\t<div class=\"row\">\n\t\t\t<img src=\"".concat(block.value, "\" alt=\"\" />\n\t\t</div>\n\t");
-}
-},{}],"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+})({"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 
 function getBundleURLCached() {
@@ -250,40 +189,7 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"index.js":[function(require,module,exports) {
-"use strict";
-
-var _model = require("./model.js");
-
-var _templates = require("./templates.js");
-
-require("./styles/main.css");
-
-// импорт модулей
-// глобальный импорт стилей
-// переменные DOM-элементы будем именовать с $ чтобы отличать от обычных переменных
-var $site = document.querySelector('#site');
-
-_model.model.forEach(function (block) {
-  // console.log(block)
-  var html = ''; // формируемый html
-  // html по типу блока
-
-  if (block.type === 'title') {
-    html = (0, _templates.title)(block);
-  } else if (block.type === 'text') {
-    html = (0, _templates.text)(block);
-  } else if (block.type === 'columns') {
-    html = (0, _templates.columns)(block);
-  } else if (block.type === 'image') {
-    html = (0, _templates.image)(block);
-  } // вставка HTML в определённое место
-  // $site.insertAdjacentHTML('куда', что)
-
-
-  $site.insertAdjacentHTML('beforeend', html);
-});
-},{"./model.js":"model.js","./templates.js":"templates.js","./styles/main.css":"styles/main.css"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -487,5 +393,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../node_modules/parcel-bundler/src/builtins/hmr-runtime.js","index.js"], null)
-//# sourceMappingURL=/src.e31bb0bc.js.map
+},{}]},{},["../node_modules/parcel-bundler/src/builtins/hmr-runtime.js"], null)
+//# sourceMappingURL=/main.d2070829.js.map
