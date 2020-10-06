@@ -1,0 +1,27 @@
+{
+  "name": "constructor",
+  "version": "1.0.0",
+  "description": "javascript site constructor",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "parcel-bundler": "^1.12.4"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Senior-Pomidor/constructor.git"
+  },
+  "keywords": [
+    "js",
+    "javascript"
+  ],
+  "author": "Vladimir <bobylev.vladi@gmai.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Senior-Pomidor/constructor/issues"
+  },
+  "homepage": "https://github.com/Senior-Pomidor/constructor#readme"
+}
