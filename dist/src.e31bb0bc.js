@@ -169,29 +169,6 @@ _model.model.forEach(function (block) {
 
   $site.insertAdjacentHTML('beforeend', html);
 });
-
-function title(block) {
-  // генерация html Заголовка
-  return "\n\t\t<div class=\"row\">\n\t\t\t<div class=\"col-sm\">\n\t\t\t\t<h1>".concat(block.value, "</h1>\n\t\t\t</div>\n\t\t</div>\n\t");
-}
-
-function text(block) {
-  // генерация html параграфа
-  return "\n\t\t<div class=\"row\">\n\t\t\t<div class=\"col-sm\">\n\t\t\t\t<p>\n\t\t\t\t\t".concat(block.value, "\n\t\t\t\t</p>\n\t\t\t</div>\n\t\t</div>\n\t");
-}
-
-function columns(block) {
-  // генерация html колонок
-  var html = block.value.map(function (text) {
-    return "\n\t\t<div class=\"col-sm\">\n\t\t\t".concat(text, "\n\t\t</div>\n\t");
-  });
-  return "\n\t\t<div class=\"row\">\n\t\t\t".concat(html.join(''), "\n\t\t</div>\n\t"); // вывод элементов массива в строку разделяется запятыми
-  // .join('') это устраняет
-}
-
-function image(block) {
-  return "\n\t\t<div class=\"row\">\n\t\t\t<img src=\"".concat(block.value, "\" alt=\"\" />\n\t\t</div>\n\t");
-}
 },{"./model.js":"model.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
