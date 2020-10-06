@@ -18,6 +18,10 @@ const model = [
 			'22222222',
 			'33333333'
 		]
+	},
+	{
+		type: 'image',
+		value: './assets/image.png'
 	}
 ]
 
@@ -35,6 +39,8 @@ model.forEach(block => {
 		html = text(block)
 	} else if (block.type === 'columns') {
 		html = columns(block)
+	} else if (block.type === 'image') {
+		html = image(block)
 	}
 
 	// вставка HTML в определённое место
@@ -82,4 +88,12 @@ function columns(block) {
 	`
 	// вывод элементов массива в строку разделяется запятыми
 	// .join('') это устраняет
+}
+
+function image(block) {
+	return `
+		<div class="row">
+			<img src="${block.value}" alt="" />
+		</div>
+	`
 }
