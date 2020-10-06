@@ -69,19 +69,17 @@ function text(block) {
 
 function columns(block) {
 	// генерация html колонок
-	let html = ''
-
-	block.value.forEach(text => {
-		html += `
-			<div class="col-sm">
-				${text}
-			</div>
-		`
-	})
+	const html = block.value.map(text => `
+		<div class="col-sm">
+			${text}
+		</div>
+	`)
 
 	return `
 		<div class="row">
-			${html}
+			${html.join('')}
 		</div>
 	`
+	// вывод элементов массива в строку разделяется запятыми
+	// .join('') это устраняет
 }
