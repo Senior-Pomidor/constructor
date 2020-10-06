@@ -8,7 +8,7 @@
     "parcel-bundler": "^1.12.4"
   },
   "scripts": {
-    "serve": "parcel ./src/index.html"
+    "serve": "parcel ./src/index.html -p 1964 --open"
   },
   "repository": {
     "type": "git",
