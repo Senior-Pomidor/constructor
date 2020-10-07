@@ -119,6 +119,39 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   return newRequire;
 })({"assets/image.png":[function(require,module,exports) {
 module.exports = "/image.90ac9039.png";
+},{}],"utils.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.row = row;
+exports.col = col;
+exports.css = css;
+
+function row(content) {
+  var styles = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+  return "<div class=\"row\" style=\"".concat(styles, "\">\n\t").concat(content, "\n</div>");
+}
+
+function col(content) {
+  return "<div class=\"col-sm\">\n\t\t".concat(content, "\n\t</div>");
+}
+
+function css() {
+  var styles = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+  // const keys = Object.keys(styles)
+  // const styles_array = keys.map(key => {
+  // 	return `${key}: ${styles[key]}`
+  // })
+  // return styles_array.join(';')
+  var toString = function toString(key) {
+    return "".concat(key, ": ").concat(styles[key]);
+  };
+
+  return Object.keys(styles).map(toString).join(';');
+}
 },{}],"classes/blocks.js":[function(require,module,exports) {
 "use strict";
 
@@ -126,6 +159,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.TextBlock = exports.ColumnsBlock = exports.ImageBlock = exports.TitleBlock = void 0;
+
+var _utils = require("../utils.js");
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -145,14 +180,30 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-// класс базового блока
-var Block = function Block(type, value, options) {
-  _classCallCheck(this, Block);
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
-  this.type = type;
-  this.value = value;
-  this.options = options;
-}; // класс заголовка унаследованный от класса Block
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+// класс базового блока
+var Block = /*#__PURE__*/function () {
+  function Block(type, value, options) {
+    _classCallCheck(this, Block);
+
+    this.type = type;
+    this.value = value;
+    this.options = options;
+  } // создаст ошибку если в инстансе не определён этот метод
+
+
+  _createClass(Block, [{
+    key: "toHTML",
+    value: function toHTML() {
+      throw new Error('Метод toHTML не определён');
+    }
+  }]);
+
+  return Block;
+}(); // класс заголовка унаследованный от класса Block
 
 
 var TitleBlock = /*#__PURE__*/function (_Block) {
@@ -165,7 +216,19 @@ var TitleBlock = /*#__PURE__*/function (_Block) {
 
     // вызывает конструктор класса Block
     return _super.call(this, 'title', value, options);
-  }
+  } // генерация html Заголовка
+
+
+  _createClass(TitleBlock, [{
+    key: "toHTML",
+    value: function toHTML() {
+      var _this$options = this.options,
+          _this$options$tag = _this$options.tag,
+          tag = _this$options$tag === void 0 ? 'h1' : _this$options$tag,
+          styles = _this$options.styles;
+      return (0, _utils.row)((0, _utils.col)("<".concat(tag, ">").concat(this.value, "</").concat(tag, ">")), (0, _utils.css)(styles));
+    }
+  }]);
 
   return TitleBlock;
 }(Block); // класс картинки унаследованный от класса Block
@@ -222,7 +285,7 @@ var TextBlock = /*#__PURE__*/function (_Block4) {
 }(Block);
 
 exports.TextBlock = TextBlock;
-},{}],"model.js":[function(require,module,exports) {
+},{"../utils.js":"utils.js"}],"model.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -277,40 +340,7 @@ new _blocks.TextBlock(text, {
   }
 })];
 exports.model = model;
-},{"./assets/image.png":"assets/image.png","./classes/blocks.js":"classes/blocks.js"}],"utils.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.row = row;
-exports.col = col;
-exports.css = css;
-
-function row(content) {
-  var styles = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
-  return "<div class=\"row\" style=\"".concat(styles, "\">\n\t").concat(content, "\n</div>");
-}
-
-function col(content) {
-  return "<div class=\"col-sm\">\n\t\t".concat(content, "\n\t</div>");
-}
-
-function css() {
-  var styles = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-
-  // const keys = Object.keys(styles)
-  // const styles_array = keys.map(key => {
-  // 	return `${key}: ${styles[key]}`
-  // })
-  // return styles_array.join(';')
-  var toString = function toString(key) {
-    return "".concat(key, ": ").concat(styles[key]);
-  };
-
-  return Object.keys(styles).map(toString).join(';');
-}
-},{}],"templates.js":[function(require,module,exports) {
+},{"./assets/image.png":"assets/image.png","./classes/blocks.js":"classes/blocks.js"}],"templates.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {

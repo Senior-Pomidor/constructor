@@ -1,9 +1,16 @@
+import {col, css, row} from '../utils.js'
+
 // класс базового блока
 class Block {
 	constructor(type, value, options) {
 		this.type = type
 		this.value = value
 		this.options = options
+	}
+
+	// создаст ошибку если в инстансе не определён этот метод
+	toHTML() {
+		throw new Error('Метод toHTML не определён')
 	}
 }
 
@@ -12,6 +19,12 @@ export class TitleBlock extends Block {
 	constructor (value, options) {
 		// вызывает конструктор класса Block
 		super('title', value, options)
+	}
+
+	// генерация html Заголовка
+	toHTML() {
+		const { tag = 'h1', styles } = this.options
+		return row(col(`<${tag}>${this.value}</${tag}>`), css(styles))
 	}
 }
 
