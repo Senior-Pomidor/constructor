@@ -67,7 +67,7 @@ export class TextBlock extends Block {
 	// генерация html Параграфа
 	toHTML() {
 		return row(col(`<p>
-			${block.value}
-		</p>`), css(block.options.styles))
+			${this.value}
+		</p>`), css(this.options.styles))
 	}
 }

@@ -309,7 +309,7 @@ var TextBlock = /*#__PURE__*/function (_Block4) {
   _createClass(TextBlock, [{
     key: "toHTML",
     value: function toHTML() {
-      return (0, _utils.row)((0, _utils.col)("<p>\n\t\t\t".concat(block.value, "\n\t\t</p>")), (0, _utils.css)(block.options.styles));
+      return (0, _utils.row)((0, _utils.col)("<p>\n\t\t\t".concat(this.value, "\n\t\t</p>")), (0, _utils.css)(this.options.styles));
     }
   }]);
 
@@ -372,60 +372,7 @@ new _blocks.TextBlock(text, {
   }
 })];
 exports.model = model;
-},{"./assets/image.png":"assets/image.png","./classes/blocks.js":"classes/blocks.js"}],"templates.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.templates = void 0;
-
-var _utils = require("./utils.js");
-
-// pure functions - функции которые зависят только от аргументов
-// не зависят от глобального контекста
-// функции генерации html для различных блоков
-// генерация html Заголовка
-function title(block) {
-  var _block$options = block.options,
-      _block$options$tag = _block$options.tag,
-      tag = _block$options$tag === void 0 ? 'h1' : _block$options$tag,
-      styles = _block$options.styles;
-  return (0, _utils.row)((0, _utils.col)("<".concat(tag, ">").concat(block.value, "</").concat(tag, ">")), (0, _utils.css)(styles));
-} // генерация html параграфа
-
-
-function text(block) {
-  return (0, _utils.row)((0, _utils.col)("<p>\n\t\t\t".concat(block.value, "\n\t\t</p>")), (0, _utils.css)(block.options.styles));
-} // генерация html колонок
-
-
-function columns(block) {
-  var html = block.value.map(_utils.col).join(''); // col каждый раз будет вызываться с новым параметром
-
-  return (0, _utils.row)(html, (0, _utils.css)(block.options.styles)); // вывод элементов массива в строку разделяется запятыми
-  // .join('') это устраняет
-} // генерация html картинки
-
-
-function image(block) {
-  var _block$options2 = block.options,
-      is = _block$options2.imageStyles,
-      _block$options2$alt = _block$options2.alt,
-      alt = _block$options2$alt === void 0 ? '' : _block$options2$alt,
-      styles = _block$options2.styles;
-  return (0, _utils.row)("<img src=\"".concat(block.value, "\" alt=\"").concat(alt, "\" style=\"").concat((0, _utils.css)(is), "\" />"), (0, _utils.css)(styles));
-} // объект с функциями генерации html блоков
-
-
-var templates = {
-  title: title,
-  text: text,
-  columns: columns,
-  image: image
-};
-exports.templates = templates;
-},{"./utils.js":"utils.js"}],"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+},{"./assets/image.png":"assets/image.png","./classes/blocks.js":"classes/blocks.js"}],"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 
 function getBundleURLCached() {
@@ -502,8 +449,6 @@ module.hot.accept(reloadCSS);
 
 var _model = require("./model.js");
 
-var _templates = require("./templates.js");
-
 require("./styles/main.css");
 
 // импорт модулей
@@ -513,24 +458,11 @@ var $site = document.querySelector('#site'); // console.log(templates)
 
 _model.model.forEach(function (block) {
   // console.log(block)
-  // возвращает соответствующие функции генерации
-  var toHTML = _templates.templates[block.type]; // console.log(toHTML)
-
-  if (toHTML) {
-    // вставка HTML в определённое место
-    // $site.insertAdjacentHTML('куда', что)
-    $site.insertAdjacentHTML('beforeend', toHTML(block));
-  }
-}); // console.log(templates.columns({
-// 	// колонки
-// 	type: 'columns',
-// 	value: [
-// 		'11111111',
-// 		'22222222',
-// 		'33333333'
-// 	]
-// }))
-},{"./model.js":"model.js","./templates.js":"templates.js","./styles/main.css":"styles/main.css"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+  // вставка HTML в определённое место
+  // $site.insertAdjacentHTML('куда', что)
+  $site.insertAdjacentHTML('beforeend', block.toHTML());
+});
+},{"./model.js":"model.js","./styles/main.css":"styles/main.css"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
