@@ -424,7 +424,124 @@ var Site = /*#__PURE__*/function () {
 }();
 
 exports.Site = Site;
-},{}],"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+},{}],"classes/sidebar.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Sidebar = void 0;
+
+var _utils = require("../utils.js");
+
+var _blocks = require("./blocks.js");
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+// Класс сайдбара с инструментами конструктора сайтов
+var Sidebar = /*#__PURE__*/function () {
+  function Sidebar(selector, updateCallback) {
+    _classCallCheck(this, Sidebar);
+
+    this.$element = document.querySelector(selector);
+    this.update = updateCallback;
+    this.init();
+  }
+
+  _createClass(Sidebar, [{
+    key: "init",
+    value: function init() {
+      this.$element.insertAdjacentHTML('afterbegin', this.template); // .bind(this) привяжет контекст класса к функции add
+
+      this.$element.addEventListener('submit', this.add.bind(this));
+    }
+  }, {
+    key: "add",
+    // предотвращение обновления страницы после отправки формы
+    value: function add(event) {
+      event.preventDefault(); // console.log(event.target)
+      // это сама форма
+      // получение значений из формы
+
+      var type = event.target.name;
+      var value = event.target.value.value;
+      var styles = event.target.styles.value; // формирование объекта блока
+
+      var newBlock = type === 'text' ? new _blocks.TextBlock(value, {
+        styles: styles
+      }) : new _blocks.TitleBlock(value, {
+        styles: styles
+      }); // console.log(newBlock)
+
+      this.update(newBlock); // очистка формы
+
+      event.target.value.value = '';
+      event.target.styles.value = '';
+    }
+  }, {
+    key: "template",
+    get: function get() {
+      return [(0, _utils.block)('text'), (0, _utils.block)('title')].join('');
+    }
+  }]);
+
+  return Sidebar;
+}();
+
+exports.Sidebar = Sidebar;
+},{"../utils.js":"utils.js","./blocks.js":"classes/blocks.js"}],"classes/app.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.App = void 0;
+
+var _site = require("./site.js");
+
+var _sidebar = require("./sidebar.js");
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var App = /*#__PURE__*/function () {
+  function App(model) {
+    _classCallCheck(this, App);
+
+    this.model = model;
+  }
+
+  _createClass(App, [{
+    key: "init",
+    value: function init() {
+      var _this = this;
+
+      var site = new _site.Site('#site');
+      site.render(this.model);
+
+      var updateCallback = function updateCallback(newBlock) {
+        // коллбэк для перерисовки DOM после изменения
+        _this.model.push(newBlock);
+
+        site.render(_this.model);
+      };
+
+      new _sidebar.Sidebar('#panel', updateCallback);
+    }
+  }]);
+
+  return App;
+}();
+
+exports.App = App;
+},{"./site.js":"classes/site.js","./sidebar.js":"classes/sidebar.js"}],"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 
 function getBundleURLCached() {
@@ -496,98 +613,17 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"classes/sidebar.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.Sidebar = void 0;
-
-var _utils = require("../utils.js");
-
-var _blocks = require("./blocks.js");
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-// Класс сайдбара с инструментами конструктора сайтов
-var Sidebar = /*#__PURE__*/function () {
-  function Sidebar(selector, updateCallback) {
-    _classCallCheck(this, Sidebar);
-
-    this.$element = document.querySelector(selector);
-    this.update = updateCallback;
-    this.init();
-  }
-
-  _createClass(Sidebar, [{
-    key: "init",
-    value: function init() {
-      this.$element.insertAdjacentHTML('afterbegin', this.template); // .bind(this) привяжет контекст класса к функции add
-
-      this.$element.addEventListener('submit', this.add.bind(this));
-    }
-  }, {
-    key: "add",
-    // предотвращение обновления страницы после отправки формы
-    value: function add(event) {
-      event.preventDefault(); // console.log(event.target)
-      // это сама форма
-      // получение значений из формы
-
-      var type = event.target.name;
-      var value = event.target.value.value;
-      var styles = event.target.styles.value; // формирование объекта блока
-
-      var newBlock = type === 'text' ? new _blocks.TextBlock(value, {
-        styles: styles
-      }) : new _blocks.TitleBlock(value, {
-        styles: styles
-      }); // console.log(newBlock)
-
-      this.update(newBlock); // очистка формы
-
-      event.target.value.value = '';
-      event.target.styles.value = '';
-    }
-  }, {
-    key: "template",
-    get: function get() {
-      return [(0, _utils.block)('text'), (0, _utils.block)('title')].join('');
-    }
-  }]);
-
-  return Sidebar;
-}();
-
-exports.Sidebar = Sidebar;
-},{"../utils.js":"utils.js","./blocks.js":"classes/blocks.js"}],"index.js":[function(require,module,exports) {
+},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _model = require("./model.js");
 
-var _site = require("./classes/site.js");
+var _app = require("./classes/app.js");
 
 require("./styles/main.css");
 
-var _sidebar = require("./classes/sidebar.js");
-
-var site = new _site.Site('#site');
-site.render(_model.model);
-
-var updateCallback = function updateCallback(newBlock) {
-  // коллбэк для перерисовки DOM после изменения
-  _model.model.push(newBlock);
-
-  site.render(_model.model);
-};
-
-new _sidebar.Sidebar('#panel', updateCallback);
-},{"./model.js":"model.js","./classes/site.js":"classes/site.js","./styles/main.css":"styles/main.css","./classes/sidebar.js":"classes/sidebar.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+new _app.App(_model.model).init();
+},{"./model.js":"model.js","./classes/app.js":"classes/app.js","./styles/main.css":"styles/main.css"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
