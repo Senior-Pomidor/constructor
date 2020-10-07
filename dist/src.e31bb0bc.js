@@ -148,36 +148,43 @@ exports.model = model;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.title = title;
-exports.text = text;
-exports.columns = columns;
-exports.image = image;
+exports.templates = void 0;
 
 // pure functions - функции которые зависят только от аргументов
 // не зависят от глобального контекста
 // функции генерации html для различных блоков
+// генерация html Заголовка
 function title(block) {
-  // генерация html Заголовка
   return "\n\t\t<div class=\"row\">\n\t\t\t<div class=\"col-sm\">\n\t\t\t\t<h1>".concat(block.value, "</h1>\n\t\t\t</div>\n\t\t</div>\n\t");
-}
+} // генерация html параграфа
+
 
 function text(block) {
-  // генерация html параграфа
   return "\n\t\t<div class=\"row\">\n\t\t\t<div class=\"col-sm\">\n\t\t\t\t<p>\n\t\t\t\t\t".concat(block.value, "\n\t\t\t\t</p>\n\t\t\t</div>\n\t\t</div>\n\t");
-}
+} // генерация html колонок
+
 
 function columns(block) {
-  // генерация html колонок
   var html = block.value.map(function (text) {
     return "\n\t\t<div class=\"col-sm\">\n\t\t\t".concat(text, "\n\t\t</div>\n\t");
   });
   return "\n\t\t<div class=\"row\">\n\t\t\t".concat(html.join(''), "\n\t\t</div>\n\t"); // вывод элементов массива в строку разделяется запятыми
   // .join('') это устраняет
-}
+} // генерация html картинки
+
 
 function image(block) {
   return "\n\t\t<div class=\"row\">\n\t\t\t<img src=\"".concat(block.value, "\" alt=\"\" />\n\t\t</div>\n\t");
-}
+} // объект с функциями генерации html блоков
+
+
+var templates = {
+  title: title,
+  text: text,
+  columns: columns,
+  image: image
+};
+exports.templates = templates;
 },{}],"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 
@@ -262,26 +269,18 @@ require("./styles/main.css");
 // импорт модулей
 // глобальный импорт стилей
 // переменные DOM-элементы будем именовать с $ чтобы отличать от обычных переменных
-var $site = document.querySelector('#site');
+var $site = document.querySelector('#site'); // console.log(templates)
 
 _model.model.forEach(function (block) {
   // console.log(block)
-  var html = ''; // формируемый html
-  // html по типу блока
+  // возвращает соответствующие функции генерации
+  var toHTML = _templates.templates[block.type]; // console.log(toHTML)
 
-  if (block.type === 'title') {
-    html = (0, _templates.title)(block);
-  } else if (block.type === 'text') {
-    html = (0, _templates.text)(block);
-  } else if (block.type === 'columns') {
-    html = (0, _templates.columns)(block);
-  } else if (block.type === 'image') {
-    html = (0, _templates.image)(block);
-  } // вставка HTML в определённое место
-  // $site.insertAdjacentHTML('куда', что)
-
-
-  $site.insertAdjacentHTML('beforeend', html);
+  if (toHTML) {
+    // вставка HTML в определённое место
+    // $site.insertAdjacentHTML('куда', что)
+    $site.insertAdjacentHTML('beforeend', toHTML(block));
+  }
 });
 },{"./model.js":"model.js","./templates.js":"templates.js","./styles/main.css":"styles/main.css"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];

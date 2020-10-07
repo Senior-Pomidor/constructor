@@ -2,8 +2,9 @@
 // не зависят от глобального контекста
 
 // функции генерации html для различных блоков
-export function title(block) {
-	// генерация html Заголовка
+
+// генерация html Заголовка
+function title(block) {
 	return `
 		<div class="row">
 			<div class="col-sm">
@@ -13,8 +14,8 @@ export function title(block) {
 	`
 }
 
-export function text(block) {
-	// генерация html параграфа
+// генерация html параграфа
+function text(block) {
 	return `
 		<div class="row">
 			<div class="col-sm">
@@ -26,8 +27,8 @@ export function text(block) {
 	`
 }
 
-export function columns(block) {
-	// генерация html колонок
+// генерация html колонок
+function columns(block) {
 	const html = block.value.map(text => `
 		<div class="col-sm">
 			${text}
@@ -43,10 +44,19 @@ export function columns(block) {
 	// .join('') это устраняет
 }
 
-export function image(block) {
+// генерация html картинки
+function image(block) {
 	return `
 		<div class="row">
 			<img src="${block.value}" alt="" />
 		</div>
 	`
+}
+
+// объект с функциями генерации html блоков
+export const templates = {
+	title,
+	text,
+	columns,
+	image
 }
