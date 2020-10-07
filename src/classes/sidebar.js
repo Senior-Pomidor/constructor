@@ -2,15 +2,17 @@ import { block } from '../utils.js'
 import { TextBlock } from './blocks.js'
 // Класс сайдбара с инструментами конструктора сайтов
 export class Sidebar {
-	constructor(selector) {
+	constructor(selector, updateCallback) {
 		this.$element = document.querySelector(selector)
+		this.update = updateCallback
 
 		this.init()
 	}
 
 	init() {
 		this.$element.insertAdjacentHTML('afterbegin', this.template)
-		this.$element.addEventListener('submit', this.add)
+		// .bind(this) привяжет контекст класса к функции add
+		this.$element.addEventListener('submit', this.add.bind(this))
 	}
 
 	get template() {
@@ -37,5 +39,9 @@ export class Sidebar {
 			: new TitleBlock(value, {styles})
 
 		// console.log(newBlock)
+		this.update(newBlock)
+
+		event.target.value.value = ''
+		event.target.styles.value = ''
 	}	
 }

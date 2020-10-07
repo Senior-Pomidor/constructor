@@ -405,6 +405,8 @@ var Site = /*#__PURE__*/function () {
     value: function render(model) {
       var _this = this;
 
+      // чтобы не дублировался сайт каждый раз при перерендере
+      this.$element.innerHTML = '';
       model.forEach(function (block) {
         // console.log(block)
         // вставка HTML в определённое место
@@ -510,18 +512,20 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 // Класс сайдбара с инструментами конструктора сайтов
 var Sidebar = /*#__PURE__*/function () {
-  function Sidebar(selector) {
+  function Sidebar(selector, updateCallback) {
     _classCallCheck(this, Sidebar);
 
     this.$element = document.querySelector(selector);
+    this.update = updateCallback;
     this.init();
   }
 
   _createClass(Sidebar, [{
     key: "init",
     value: function init() {
-      this.$element.insertAdjacentHTML('afterbegin', this.template);
-      this.$element.addEventListener('submit', this.add);
+      this.$element.insertAdjacentHTML('afterbegin', this.template); // .bind(this) привяжет контекст класса к функции add
+
+      this.$element.addEventListener('submit', this.add.bind(this));
     }
   }, {
     key: "add",
@@ -540,6 +544,10 @@ var Sidebar = /*#__PURE__*/function () {
       }) : new TitleBlock(value, {
         styles: styles
       }); // console.log(newBlock)
+
+      this.update(newBlock);
+      event.target.value.value = '';
+      event.target.styles.value = '';
     }
   }, {
     key: "template",

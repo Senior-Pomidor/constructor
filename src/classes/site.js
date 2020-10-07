@@ -6,6 +6,8 @@ export class Site {
 	}
 
 	render(model) {
+		// чтобы не дублировался сайт каждый раз при перерендере
+		this.$element.innerHTML = ''
 		model.forEach(block => {
 			// console.log(block)
 			// вставка HTML в определённое место
