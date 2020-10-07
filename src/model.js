@@ -1,5 +1,9 @@
 import image from './assets/image.png' //путь до картинки
 
+const text = `
+Лайк и подписка <a href="https://www.instagram.com/sugarbob99/" target="_blank">sugarbob99</a>
+`
+
 // модель блоков
 export const model = [
 	{
@@ -18,9 +22,15 @@ export const model = [
 		}
 	},
 	{
-		// параграф
-		type: 'text',
-		value: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.'
+		type: 'image',
+		value: image,
+		options: {
+			styles: {
+				padding: '2rem 0',
+				display: 'flex',
+				'justify-content': 'center'
+			}
+		}
 	},
 	{
 		// колонки
@@ -29,10 +39,26 @@ export const model = [
 			'11111111',
 			'22222222',
 			'33333333'
-		]
+		],
+		options: {
+			styles: {
+				background: 'linear-gradient(to bottom, #8e2de2, #4a00e0)',
+				padding: '2rem',
+				color: '#fff',
+				'font-weight': 'bold'
+			}
+		}
 	},
 	{
-		type: 'image',
-		value: image
+		// параграф
+		type: 'text',
+		value: text,
+		options: {
+			styles: {
+				background: 'linear-gradient(to left, #f2994a, #f2c94c)',
+				padding: '1rem',
+				'font-weight': 'bold'
+			}
+		}
 	}
 ]

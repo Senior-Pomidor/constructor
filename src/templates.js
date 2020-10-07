@@ -14,7 +14,7 @@ function title(block) {
 function text(block) {
 	return row(col(`<p>
 			${block.value}
-		</p>`))
+		</p>`), css(block.options.styles))
 }
 
 // генерация html колонок
@@ -22,14 +22,14 @@ function columns(block) {
 	const html = block.value.map(col).join('')
 	// col каждый раз будет вызываться с новым параметром
 
-	return row(html)
+	return row(html, css(block.options.styles))
 	// вывод элементов массива в строку разделяется запятыми
 	// .join('') это устраняет
 }
 
 // генерация html картинки
 function image(block) {
-	return row(`<img src="${block.value}" alt="" />`)
+	return row(`<img src="${block.value}" alt="" />`, css(block.options.styles))
 }
 
 // объект с функциями генерации html блоков

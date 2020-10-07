@@ -132,7 +132,8 @@ var _image = _interopRequireDefault(require("./assets/image.png"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 //путь до картинки
-// модель блоков
+var text = "\n\u041B\u0430\u0439\u043A \u0438 \u043F\u043E\u0434\u043F\u0438\u0441\u043A\u0430 <a href=\"https://www.instagram.com/sugarbob99/\" target=\"_blank\">sugarbob99</a>\n"; // модель блоков
+
 var model = [{
   // заголовок
   type: 'title',
@@ -148,16 +149,38 @@ var model = [{
     }
   }
 }, {
-  // параграф
-  type: 'text',
-  value: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.'
+  type: 'image',
+  value: _image.default,
+  options: {
+    styles: {
+      padding: '2rem 0',
+      display: 'flex',
+      'justify-content': 'center'
+    }
+  }
 }, {
   // колонки
   type: 'columns',
-  value: ['11111111', '22222222', '33333333']
+  value: ['11111111', '22222222', '33333333'],
+  options: {
+    styles: {
+      background: 'linear-gradient(to bottom, #8e2de2, #4a00e0)',
+      padding: '2rem',
+      color: '#fff',
+      'font-weight': 'bold'
+    }
+  }
 }, {
-  type: 'image',
-  value: _image.default
+  // параграф
+  type: 'text',
+  value: text,
+  options: {
+    styles: {
+      background: 'linear-gradient(to left, #f2994a, #f2c94c)',
+      padding: '1rem',
+      'font-weight': 'bold'
+    }
+  }
 }];
 exports.model = model;
 },{"./assets/image.png":"assets/image.png"}],"utils.js":[function(require,module,exports) {
@@ -217,20 +240,20 @@ function title(block) {
 
 
 function text(block) {
-  return (0, _utils.row)((0, _utils.col)("<p>\n\t\t\t".concat(block.value, "\n\t\t</p>")));
+  return (0, _utils.row)((0, _utils.col)("<p>\n\t\t\t".concat(block.value, "\n\t\t</p>")), (0, _utils.css)(block.options.styles));
 } // генерация html колонок
 
 
 function columns(block) {
   var html = block.value.map(_utils.col).join(''); // col каждый раз будет вызываться с новым параметром
 
-  return (0, _utils.row)(html); // вывод элементов массива в строку разделяется запятыми
+  return (0, _utils.row)(html, (0, _utils.css)(block.options.styles)); // вывод элементов массива в строку разделяется запятыми
   // .join('') это устраняет
 } // генерация html картинки
 
 
 function image(block) {
-  return (0, _utils.row)("<img src=\"".concat(block.value, "\" alt=\"\" />"));
+  return (0, _utils.row)("<img src=\"".concat(block.value, "\" alt=\"\" />"), (0, _utils.css)(block.options.styles));
 } // объект с функциями генерации html блоков
 
 
@@ -337,13 +360,15 @@ _model.model.forEach(function (block) {
     // $site.insertAdjacentHTML('куда', что)
     $site.insertAdjacentHTML('beforeend', toHTML(block));
   }
-});
-
-console.log(_templates.templates.columns({
-  // колонки
-  type: 'columns',
-  value: ['11111111', '22222222', '33333333']
-}));
+}); // console.log(templates.columns({
+// 	// колонки
+// 	type: 'columns',
+// 	value: [
+// 		'11111111',
+// 		'22222222',
+// 		'33333333'
+// 	]
+// }))
 },{"./model.js":"model.js","./templates.js":"templates.js","./styles/main.css":"styles/main.css"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
