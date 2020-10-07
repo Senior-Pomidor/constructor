@@ -1,4 +1,5 @@
 import { block } from '../utils.js'
+import { TextBlock } from './blocks.js'
 // Класс сайдбара с инструментами конструктора сайтов
 export class Sidebar {
 	constructor(selector) {
@@ -29,5 +30,16 @@ export class Sidebar {
 		const type = event.target.name
 		const value = event.target.value.value
 		const styles = event.target.styles.value
-	}
+
+		let newBlock
+
+		// формирование объекта блока
+		if (type === 'text') {
+			newBlock = new TextBlock(value, {styles})
+		} else {
+			newBlock = new TitleBlock(value, {styles})
+		}
+
+		// console.log(newBlock)
+	}	
 }
