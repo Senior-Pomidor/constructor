@@ -8,7 +8,7 @@ import { row, col } from './utils.js'
 function title(block) {
 	const tag = block.options.tag
 	const styles = block.options.styles
-	return row(col(`<${tag}>${block.value}</${tag}>`))
+	return row(col(`<${tag}>${block.value}</${tag}>`), styles)
 }
 
 // генерация html параграфа

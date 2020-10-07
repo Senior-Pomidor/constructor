@@ -139,7 +139,7 @@ var model = [{
   value: 'Конструктор сайтов на JavaScript!',
   options: {
     tag: 'h2',
-    styles: "background: 'linear-gradient(to right, #ff0099, #493240);color: #fff;'"
+    styles: "background: linear-gradient(to right, #ff0099, #493240);color: #fff;text-align: center;padding: 1.5rem;"
   }
 }, {
   // параграф
@@ -164,7 +164,8 @@ exports.row = row;
 exports.col = col;
 
 function row(content) {
-  return "<div class=\"row\">\n\t".concat(content, "\n</div>");
+  var styles = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+  return "<div class=\"row\" style=\"".concat(styles, "\">\n\t").concat(content, "\n</div>");
 }
 
 function col(content) {
@@ -187,7 +188,7 @@ var _utils = require("./utils.js");
 function title(block) {
   var tag = block.options.tag;
   var styles = block.options.styles;
-  return (0, _utils.row)((0, _utils.col)("<".concat(tag, ">").concat(block.value, "</").concat(tag, ">")));
+  return (0, _utils.row)((0, _utils.col)("<".concat(tag, ">").concat(block.value, "</").concat(tag, ">")), styles);
 } // генерация html параграфа
 
 
