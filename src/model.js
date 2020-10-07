@@ -1,3 +1,5 @@
+import image from './assets/image.png' //путь до картинки
+
 // модель блоков
 export const model = [
 	{
@@ -21,6 +23,6 @@ export const model = [
 	},
 	{
 		type: 'image',
-		value: './assets/image.png'
+		value: image
 	}
 ]

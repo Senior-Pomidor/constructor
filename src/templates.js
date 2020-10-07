@@ -1,56 +1,34 @@
 // pure functions - функции которые зависят только от аргументов
 // не зависят от глобального контекста
+import { row, col } from './utils.js'
 
 // функции генерации html для различных блоков
 
 // генерация html Заголовка
 function title(block) {
-	return `
-		<div class="row">
-			<div class="col-sm">
-				<h1>${block.value}</h1>
-			</div>
-		</div>
-	`
+	return row(col(`<h1>${block.value}</h1>`))
 }
 
 // генерация html параграфа
 function text(block) {
-	return `
-		<div class="row">
-			<div class="col-sm">
-				<p>
-					${block.value}
-				</p>
-			</div>
-		</div>
-	`
+	return row(col(`<p>
+			${block.value}
+		</p>`))
 }
 
 // генерация html колонок
 function columns(block) {
 	const html = block.value.map(text => `
-		<div class="col-sm">
-			${text}
-		</div>
-	`)
+	${col(text)}`)
 
-	return `
-		<div class="row">
-			${html.join('')}
-		</div>
-	`
+	return row(html.join(''))
 	// вывод элементов массива в строку разделяется запятыми
 	// .join('') это устраняет
 }
 
 // генерация html картинки
 function image(block) {
-	return `
-		<div class="row">
-			<img src="${block.value}" alt="" />
-		</div>
-	`
+	return row(`<img src="${block.value}" alt="" />`)
 }
 
 // объект с функциями генерации html блоков

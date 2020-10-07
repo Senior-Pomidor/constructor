@@ -117,13 +117,21 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"model.js":[function(require,module,exports) {
+})({"assets/image.png":[function(require,module,exports) {
+module.exports = "/image.90ac9039.png";
+},{}],"model.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.model = void 0;
+
+var _image = _interopRequireDefault(require("./assets/image.png"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//путь до картинки
 // модель блоков
 var model = [{
   // заголовок
@@ -139,9 +147,25 @@ var model = [{
   value: ['11111111', '22222222', '33333333']
 }, {
   type: 'image',
-  value: './assets/image.png'
+  value: _image.default
 }];
 exports.model = model;
+},{"./assets/image.png":"assets/image.png"}],"utils.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.row = row;
+exports.col = col;
+
+function row(content) {
+  return "<div class=\"row\">\n\t".concat(content, "\n</div>");
+}
+
+function col(content) {
+  return "<div class=\"col-sm\">\n\t\t".concat(content, "\n\t</div>");
+}
 },{}],"templates.js":[function(require,module,exports) {
 "use strict";
 
@@ -150,31 +174,33 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.templates = void 0;
 
+var _utils = require("./utils.js");
+
 // pure functions - функции которые зависят только от аргументов
 // не зависят от глобального контекста
 // функции генерации html для различных блоков
 // генерация html Заголовка
 function title(block) {
-  return "\n\t\t<div class=\"row\">\n\t\t\t<div class=\"col-sm\">\n\t\t\t\t<h1>".concat(block.value, "</h1>\n\t\t\t</div>\n\t\t</div>\n\t");
+  return (0, _utils.row)((0, _utils.col)("<h1>".concat(block.value, "</h1>")));
 } // генерация html параграфа
 
 
 function text(block) {
-  return "\n\t\t<div class=\"row\">\n\t\t\t<div class=\"col-sm\">\n\t\t\t\t<p>\n\t\t\t\t\t".concat(block.value, "\n\t\t\t\t</p>\n\t\t\t</div>\n\t\t</div>\n\t");
+  return (0, _utils.row)((0, _utils.col)("<p>\n\t\t\t".concat(block.value, "\n\t\t</p>")));
 } // генерация html колонок
 
 
 function columns(block) {
   var html = block.value.map(function (text) {
-    return "\n\t\t<div class=\"col-sm\">\n\t\t\t".concat(text, "\n\t\t</div>\n\t");
+    return "\n\t".concat((0, _utils.col)(text));
   });
-  return "\n\t\t<div class=\"row\">\n\t\t\t".concat(html.join(''), "\n\t\t</div>\n\t"); // вывод элементов массива в строку разделяется запятыми
+  return (0, _utils.row)(html.join('')); // вывод элементов массива в строку разделяется запятыми
   // .join('') это устраняет
 } // генерация html картинки
 
 
 function image(block) {
-  return "\n\t\t<div class=\"row\">\n\t\t\t<img src=\"".concat(block.value, "\" alt=\"\" />\n\t\t</div>\n\t");
+  return (0, _utils.row)("<img src=\"".concat(block.value, "\" alt=\"\" />"));
 } // объект с функциями генерации html блоков
 
 
@@ -185,7 +211,7 @@ var templates = {
   image: image
 };
 exports.templates = templates;
-},{}],"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+},{"./utils.js":"utils.js"}],"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 
 function getBundleURLCached() {
@@ -281,7 +307,15 @@ _model.model.forEach(function (block) {
     // $site.insertAdjacentHTML('куда', что)
     $site.insertAdjacentHTML('beforeend', toHTML(block));
   }
-});
+}); // console.log(templates.columns({
+// 	// колонки
+// 	type: 'columns',
+// 	value: [
+// 		'11111111',
+// 		'22222222',
+// 		'33333333'
+// 	]
+// }))
 },{"./model.js":"model.js","./templates.js":"templates.js","./styles/main.css":"styles/main.css"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
