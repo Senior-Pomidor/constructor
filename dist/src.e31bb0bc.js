@@ -533,19 +533,13 @@ var Sidebar = /*#__PURE__*/function () {
 
       var type = event.target.name;
       var value = event.target.value.value;
-      var styles = event.target.styles.value;
-      var newBlock; // формирование объекта блока
+      var styles = event.target.styles.value; // формирование объекта блока
 
-      if (type === 'text') {
-        newBlock = new _blocks.TextBlock(value, {
-          styles: styles
-        });
-      } else {
-        newBlock = new TitleBlock(value, {
-          styles: styles
-        });
-      } // console.log(newBlock)
-
+      var newBlock = type === 'text' ? new _blocks.TextBlock(value, {
+        styles: styles
+      }) : new TitleBlock(value, {
+        styles: styles
+      }); // console.log(newBlock)
     }
   }, {
     key: "template",
@@ -571,7 +565,15 @@ var _sidebar = require("./classes/sidebar.js");
 
 var site = new _site.Site('#site');
 site.render(_model.model);
-var sidebar = new _sidebar.Sidebar('#panel');
+
+var updateCallback = function updateCallback(newBlock) {
+  // коллбэк для перерисовки DOM после изменения
+  _model.model.push(newBlock);
+
+  site.render(_model.model);
+};
+
+new _sidebar.Sidebar('#panel', updateCallback);
 },{"./model.js":"model.js","./classes/site.js":"classes/site.js","./styles/main.css":"styles/main.css","./classes/sidebar.js":"classes/sidebar.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';

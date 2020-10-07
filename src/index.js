@@ -7,4 +7,10 @@ const site = new Site('#site')
 
 site.render(model)
 
-const sidebar = new Sidebar('#panel')
+const updateCallback = newBlock => {
+	// коллбэк для перерисовки DOM после изменения
+	model.push(newBlock)
+	site.render(model)
+}
+
+new Sidebar('#panel', updateCallback)
