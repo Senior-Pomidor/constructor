@@ -9,3 +9,12 @@ export function col(content) {
 		${content}
 	</div>`
 }
+
+export function css(styles = {}) {
+	const keys = Object.keys(styles)
+	const styles_array = keys.map(key => {
+		return `${key}: ${styles[key]}`
+	})
+
+	return styles_array.join(';')
+}

@@ -1,13 +1,13 @@
 // pure functions - функции которые зависят только от аргументов
 // не зависят от глобального контекста
-import { row, col } from './utils.js'
+import { row, col, css } from './utils.js'
 
 // функции генерации html для различных блоков
 
 // генерация html Заголовка
 function title(block) {
 	const { tag = 'h1', styles } = block.options
-	return row(col(`<${tag}>${block.value}</${tag}>`), styles)
+	return row(col(`<${tag}>${block.value}</${tag}>`), css(styles))
 }
 
 // генерация html параграфа
