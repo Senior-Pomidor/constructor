@@ -155,59 +155,43 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //путь до картинки
 var text = "\n\u041B\u0430\u0439\u043A \u0438 \u043F\u043E\u0434\u043F\u0438\u0441\u043A\u0430 <a href=\"https://www.instagram.com/sugarbob99/\" target=\"_blank\">sugarbob99</a>\n"; // модель блоков
 
-var model = [{
-  // заголовок
-  type: 'title',
-  value: 'Конструктор сайтов на JavaScript!',
-  options: {
-    tag: 'h2',
-    // styles: `background: linear-gradient(to right, #ff0099, #493240);color: #fff;text-align: center;padding: 1.5rem;`
-    styles: {
-      background: 'linear-gradient(to right, #ff0099, #493240)',
-      color: '#fff',
-      padding: '1.5rem',
-      'text-align': 'center'
-    }
+var model = [// заголовок
+new _blocks.Block('title', 'Конструктор сайтов на JavaScript!', {
+  tag: 'h2',
+  styles: {
+    background: 'linear-gradient(to right, #ff0099, #493240)',
+    color: '#fff',
+    padding: '1.5rem',
+    'text-align': 'center'
   }
-}, {
-  type: 'image',
-  value: _image.default,
-  options: {
-    styles: {
-      padding: '2rem 0',
-      display: 'flex',
-      'justify-content': 'center'
-    },
-    imageStyles: {
-      width: '500px',
-      height: 'auto'
-    },
-    alt: ''
+}), // картинка
+new _blocks.Block('image', _image.default, {
+  styles: {
+    padding: '2rem 0',
+    display: 'flex',
+    'justify-content': 'center'
+  },
+  imageStyles: {
+    width: '500px',
+    height: 'auto'
+  },
+  alt: ''
+}), // колонки
+new _blocks.Block('columns', ['11111111', '22222222', '33333333'], {
+  styles: {
+    background: 'linear-gradient(to bottom, #8e2de2, #4a00e0)',
+    padding: '2rem',
+    color: '#fff',
+    'font-weight': 'bold'
   }
-}, {
-  // колонки
-  type: 'columns',
-  value: ['11111111', '22222222', '33333333'],
-  options: {
-    styles: {
-      background: 'linear-gradient(to bottom, #8e2de2, #4a00e0)',
-      padding: '2rem',
-      color: '#fff',
-      'font-weight': 'bold'
-    }
+}), // параграф
+new _blocks.Block('text', text, {
+  styles: {
+    background: 'linear-gradient(to left, #f2994a, #f2c94c)',
+    padding: '1rem',
+    'font-weight': 'bold'
   }
-}, {
-  // параграф
-  type: 'text',
-  value: text,
-  options: {
-    styles: {
-      background: 'linear-gradient(to left, #f2994a, #f2c94c)',
-      padding: '1rem',
-      'font-weight': 'bold'
-    }
-  }
-}];
+})];
 exports.model = model;
 },{"./assets/image.png":"assets/image.png","./classes/blocks.js":"classes/blocks.js"}],"utils.js":[function(require,module,exports) {
 "use strict";
