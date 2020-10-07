@@ -186,8 +186,10 @@ var _utils = require("./utils.js");
 // функции генерации html для различных блоков
 // генерация html Заголовка
 function title(block) {
-  var tag = block.options.tag;
-  var styles = block.options.styles;
+  var _block$options = block.options,
+      _block$options$tag = _block$options.tag,
+      tag = _block$options$tag === void 0 ? 'h1' : _block$options$tag,
+      styles = _block$options.styles;
   return (0, _utils.row)((0, _utils.col)("<".concat(tag, ">").concat(block.value, "</").concat(tag, ">")), styles);
 } // генерация html параграфа
 
