@@ -125,19 +125,103 @@ module.exports = "/image.90ac9039.png";
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Block = void 0;
+exports.TextBlock = exports.ColumnsBlock = exports.ImageBlock = exports.TitleBlock = void 0;
+
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+// класс базового блока
 var Block = function Block(type, value, options) {
   _classCallCheck(this, Block);
 
   this.type = type;
   this.value = value;
   this.options = options;
-};
+}; // класс заголовка унаследованный от класса Block
 
-exports.Block = Block;
+
+var TitleBlock = /*#__PURE__*/function (_Block) {
+  _inherits(TitleBlock, _Block);
+
+  var _super = _createSuper(TitleBlock);
+
+  function TitleBlock(value, options) {
+    _classCallCheck(this, TitleBlock);
+
+    // вызывает конструктор класса Block
+    return _super.call(this, 'title', value, options);
+  }
+
+  return TitleBlock;
+}(Block); // класс картинки унаследованный от класса Block
+
+
+exports.TitleBlock = TitleBlock;
+
+var ImageBlock = /*#__PURE__*/function (_Block2) {
+  _inherits(ImageBlock, _Block2);
+
+  var _super2 = _createSuper(ImageBlock);
+
+  function ImageBlock(value, options) {
+    _classCallCheck(this, ImageBlock);
+
+    return _super2.call(this, 'image', value, options);
+  }
+
+  return ImageBlock;
+}(Block); // класс колонок унаследованный от класса Block
+
+
+exports.ImageBlock = ImageBlock;
+
+var ColumnsBlock = /*#__PURE__*/function (_Block3) {
+  _inherits(ColumnsBlock, _Block3);
+
+  var _super3 = _createSuper(ColumnsBlock);
+
+  function ColumnsBlock(value, options) {
+    _classCallCheck(this, ColumnsBlock);
+
+    return _super3.call(this, 'columns', value, options);
+  }
+
+  return ColumnsBlock;
+}(Block); // класс параграфа унаследованный от класса Block
+
+
+exports.ColumnsBlock = ColumnsBlock;
+
+var TextBlock = /*#__PURE__*/function (_Block4) {
+  _inherits(TextBlock, _Block4);
+
+  var _super4 = _createSuper(TextBlock);
+
+  function TextBlock(value, options) {
+    _classCallCheck(this, TextBlock);
+
+    return _super4.call(this, 'text', value, options);
+  }
+
+  return TextBlock;
+}(Block);
+
+exports.TextBlock = TextBlock;
 },{}],"model.js":[function(require,module,exports) {
 "use strict";
 
