@@ -371,7 +371,47 @@ new _blocks.TextBlock(text, {
   }
 })];
 exports.model = model;
-},{"./assets/image.png":"assets/image.png","./classes/blocks.js":"classes/blocks.js"}],"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+},{"./assets/image.png":"assets/image.png","./classes/blocks.js":"classes/blocks.js"}],"classes/site.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Site = void 0;
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var Site = /*#__PURE__*/function () {
+  function Site(selector) {
+    _classCallCheck(this, Site);
+
+    // переменные DOM-элементы будем именовать с $ чтобы отличать от обычных переменных
+    this.$element = document.querySelector(selector);
+  }
+
+  _createClass(Site, [{
+    key: "render",
+    value: function render(model) {
+      var _this = this;
+
+      model.forEach(function (block) {
+        // console.log(block)
+        // вставка HTML в определённое место
+        // $site.insertAdjacentHTML('куда', что)
+        _this.$element.insertAdjacentHTML('beforeend', block.toHTML());
+      });
+    }
+  }]);
+
+  return Site;
+}();
+
+exports.Site = Site;
+},{}],"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 
 function getBundleURLCached() {
@@ -448,20 +488,15 @@ module.hot.accept(reloadCSS);
 
 var _model = require("./model.js");
 
+var _site = require("./classes/site.js");
+
 require("./styles/main.css");
 
 // импорт модулей
 // глобальный импорт стилей
-// переменные DOM-элементы будем именовать с $ чтобы отличать от обычных переменных
-var $site = document.querySelector('#site'); // console.log(templates)
-
-_model.model.forEach(function (block) {
-  // console.log(block)
-  // вставка HTML в определённое место
-  // $site.insertAdjacentHTML('куда', что)
-  $site.insertAdjacentHTML('beforeend', block.toHTML());
-});
-},{"./model.js":"model.js","./styles/main.css":"styles/main.css"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+var site = new _site.Site('#site');
+site.render(_model.model);
+},{"./model.js":"model.js","./classes/site.js":"classes/site.js","./styles/main.css":"styles/main.css"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
