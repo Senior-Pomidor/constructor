@@ -22,12 +22,12 @@ model.forEach(block => {
 	}
 })
 
-// console.log(templates.columns({
-// 	// колонки
-// 	type: 'columns',
-// 	value: [
-// 		'11111111',
-// 		'22222222',
-// 		'33333333'
-// 	]
-// }))
+console.log(templates.columns({
+	// колонки
+	type: 'columns',
+	value: [
+		'11111111',
+		'22222222',
+		'33333333'
+	]
+}))

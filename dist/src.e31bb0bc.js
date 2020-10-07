@@ -191,10 +191,9 @@ function text(block) {
 
 
 function columns(block) {
-  var html = block.value.map(function (text) {
-    return "\n\t".concat((0, _utils.col)(text));
-  });
-  return (0, _utils.row)(html.join('')); // вывод элементов массива в строку разделяется запятыми
+  var html = block.value.map(_utils.col).join(''); // col каждый раз будет вызываться с новым параметром
+
+  return (0, _utils.row)(html); // вывод элементов массива в строку разделяется запятыми
   // .join('') это устраняет
 } // генерация html картинки
 
@@ -307,15 +306,13 @@ _model.model.forEach(function (block) {
     // $site.insertAdjacentHTML('куда', что)
     $site.insertAdjacentHTML('beforeend', toHTML(block));
   }
-}); // console.log(templates.columns({
-// 	// колонки
-// 	type: 'columns',
-// 	value: [
-// 		'11111111',
-// 		'22222222',
-// 		'33333333'
-// 	]
-// }))
+});
+
+console.log(_templates.templates.columns({
+  // колонки
+  type: 'columns',
+  value: ['11111111', '22222222', '33333333']
+}));
 },{"./model.js":"model.js","./templates.js":"templates.js","./styles/main.css":"styles/main.css"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';

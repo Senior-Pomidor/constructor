@@ -18,10 +18,10 @@ function text(block) {
 
 // генерация html колонок
 function columns(block) {
-	const html = block.value.map(text => `
-	${col(text)}`)
+	const html = block.value.map(col).join('')
+	// col каждый раз будет вызываться с новым параметром
 
-	return row(html.join(''))
+	return row(html)
 	// вывод элементов массива в строку разделяется запятыми
 	// .join('') это устраняет
 }
