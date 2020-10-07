@@ -240,7 +240,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var text = "\n\u041B\u0430\u0439\u043A \u0438 \u043F\u043E\u0434\u043F\u0438\u0441\u043A\u0430 <a href=\"https://www.instagram.com/sugarbob99/\" target=\"_blank\">sugarbob99</a>\n"; // модель блоков
 
 var model = [// заголовок
-new _blocks.Block('title', 'Конструктор сайтов на JavaScript!', {
+new _blocks.TitleBlock('Конструктор сайтов на JavaScript!', {
   tag: 'h2',
   styles: {
     background: 'linear-gradient(to right, #ff0099, #493240)',
@@ -249,7 +249,7 @@ new _blocks.Block('title', 'Конструктор сайтов на JavaScript!
     'text-align': 'center'
   }
 }), // картинка
-new _blocks.Block('image', _image.default, {
+new _blocks.ImageBlock(_image.default, {
   styles: {
     padding: '2rem 0',
     display: 'flex',
@@ -261,7 +261,7 @@ new _blocks.Block('image', _image.default, {
   },
   alt: ''
 }), // колонки
-new _blocks.Block('columns', ['11111111', '22222222', '33333333'], {
+new _blocks.ColumnsBlock(['11111111', '22222222', '33333333'], {
   styles: {
     background: 'linear-gradient(to bottom, #8e2de2, #4a00e0)',
     padding: '2rem',
@@ -269,7 +269,7 @@ new _blocks.Block('columns', ['11111111', '22222222', '33333333'], {
     'font-weight': 'bold'
   }
 }), // параграф
-new _blocks.Block('text', text, {
+new _blocks.TextBlock(text, {
   styles: {
     background: 'linear-gradient(to left, #f2994a, #f2c94c)',
     padding: '1rem',
@@ -496,7 +496,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49868" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51278" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
