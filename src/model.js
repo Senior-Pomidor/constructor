@@ -5,7 +5,11 @@ export const model = [
 	{
 		// заголовок
 		type: 'title',
-		value: 'Hello World from JS!'
+		value: 'Конструктор сайтов на JavaScript!',
+		options: {
+			tag: 'h2',
+			styles: `background: 'linear-gradient(to right, #ff0099, #493240);color: #fff;'`
+		}
 	},
 	{
 		// параграф

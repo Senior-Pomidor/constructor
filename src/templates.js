@@ -6,7 +6,9 @@ import { row, col } from './utils.js'
 
 // генерация html Заголовка
 function title(block) {
-	return row(col(`<h1>${block.value}</h1>`))
+	const tag = block.options.tag
+	const styles = block.options.styles
+	return row(col(`<${tag}>${block.value}</${tag}>`))
 }
 
 // генерация html параграфа

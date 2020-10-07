@@ -136,7 +136,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var model = [{
   // заголовок
   type: 'title',
-  value: 'Hello World from JS!'
+  value: 'Конструктор сайтов на JavaScript!',
+  options: {
+    tag: 'h2',
+    styles: "background: 'linear-gradient(to right, #ff0099, #493240);color: #fff;'"
+  }
 }, {
   // параграф
   type: 'text',
@@ -181,7 +185,9 @@ var _utils = require("./utils.js");
 // функции генерации html для различных блоков
 // генерация html Заголовка
 function title(block) {
-  return (0, _utils.row)((0, _utils.col)("<h1>".concat(block.value, "</h1>")));
+  var tag = block.options.tag;
+  var styles = block.options.styles;
+  return (0, _utils.row)((0, _utils.col)("<".concat(tag, ">").concat(block.value, "</").concat(tag, ">")));
 } // генерация html параграфа
 
 
