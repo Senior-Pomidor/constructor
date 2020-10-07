@@ -385,6 +385,7 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
+// Класс сайта
 var Site = /*#__PURE__*/function () {
   function Site(selector) {
     _classCallCheck(this, Site);
@@ -483,7 +484,26 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"index.js":[function(require,module,exports) {
+},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"classes/sidebar.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Sidebar = void 0;
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+// Класс сайдбара с инструментами конструктора сайтов
+var Sidebar = function Sidebar(selector) {
+  _classCallCheck(this, Sidebar);
+
+  this.$element = document.querySelector(selector);
+  this.$element.insertAdjacentHTML('afterbegin', '<h1>test<h1/>');
+};
+
+exports.Sidebar = Sidebar;
+},{}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _model = require("./model.js");
@@ -492,11 +512,12 @@ var _site = require("./classes/site.js");
 
 require("./styles/main.css");
 
-// импорт модулей
-// глобальный импорт стилей
+var _sidebar = require("./classes/sidebar.js");
+
 var site = new _site.Site('#site');
 site.render(_model.model);
-},{"./model.js":"model.js","./classes/site.js":"classes/site.js","./styles/main.css":"styles/main.css"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+var sidebar = new _sidebar.Sidebar('#panel');
+},{"./model.js":"model.js","./classes/site.js":"classes/site.js","./styles/main.css":"styles/main.css","./classes/sidebar.js":"classes/sidebar.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
