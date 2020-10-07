@@ -21,6 +21,7 @@ export function css(styles = {}) {
 	return Object.keys(styles).map(toString).join(';')
 }
 
+// создаёт форму для конструктора в сайдбаре
 export function block(type) {
 	return `
 		<form name="${type}">

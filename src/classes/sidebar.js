@@ -9,6 +9,7 @@ export class Sidebar {
 
 	init() {
 		this.$element.insertAdjacentHTML('afterbegin', this.template)
+		this.$element.addEventListener('submit', this.add)
 	}
 
 	get template() {
@@ -16,5 +17,17 @@ export class Sidebar {
 			block('text'),
 			block('title')
 		].join('')
+	}
+
+	// предотвращение обновления страницы после отправки формы
+	add(event) {
+		event.preventDefault()
+		// console.log(event.target)
+		// это сама форма
+
+		// получение значений из формы
+		const type = event.target.name
+		const value = event.target.value.value
+		const styles = event.target.styles.value
 	}
 }

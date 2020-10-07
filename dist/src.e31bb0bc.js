@@ -152,7 +152,8 @@ function css() {
   };
 
   return Object.keys(styles).map(toString).join(';');
-}
+} // создаёт форму для конструктора в сайдбаре
+
 
 function block(type) {
   return "\n\t\t<form name=\"".concat(type, "\">\n\t\t\t<h5>").concat(type, "</h5>\n\t\t\t<div class=\"form-group\">\n\t\t\t\t<input class=\"form-control form-control-sm\" name=\"value\" placeholder=\"value\">\n\t\t\t</div>\n\t\t\t<div class=\"form-group\">\n\t\t\t\t<input class=\"form-control form-control-sm\" name=\"styles\" placeholder=\"styles\">\n\t\t\t</div>\n\t\t\t<button type=\"submit\" class=\"btn btn-primary btn-sm\">\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C</button>\n\t\t</form>\n\t\t<hr />\n\t");
@@ -518,6 +519,19 @@ var Sidebar = /*#__PURE__*/function () {
     key: "init",
     value: function init() {
       this.$element.insertAdjacentHTML('afterbegin', this.template);
+      this.$element.addEventListener('submit', this.add);
+    }
+  }, {
+    key: "add",
+    // предотвращение обновления страницы после отправки формы
+    value: function add(event) {
+      event.preventDefault(); // console.log(event.target)
+      // это сама форма
+      // получение значений из формы
+
+      var type = event.target.name;
+      var value = event.target.value.value;
+      var styles = event.target.styles.value;
     }
   }, {
     key: "template",
