@@ -186,10 +186,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 // класс базового блока
 var Block = /*#__PURE__*/function () {
-  function Block(type, value, options) {
+  function Block(value, options) {
     _classCallCheck(this, Block);
 
-    this.type = type;
     this.value = value;
     this.options = options;
   } // создаст ошибку если в инстансе не определён этот метод
@@ -215,7 +214,7 @@ var TitleBlock = /*#__PURE__*/function (_Block) {
     _classCallCheck(this, TitleBlock);
 
     // вызывает конструктор класса Block
-    return _super.call(this, 'title', value, options);
+    return _super.call(this, value, options);
   } // генерация html Заголовка
 
 
@@ -244,7 +243,7 @@ var ImageBlock = /*#__PURE__*/function (_Block2) {
   function ImageBlock(value, options) {
     _classCallCheck(this, ImageBlock);
 
-    return _super2.call(this, 'image', value, options);
+    return _super2.call(this, value, options);
   } // генерация html Картинки
 
 
@@ -274,7 +273,7 @@ var ColumnsBlock = /*#__PURE__*/function (_Block3) {
   function ColumnsBlock(value, options) {
     _classCallCheck(this, ColumnsBlock);
 
-    return _super3.call(this, 'columns', value, options);
+    return _super3.call(this, value, options);
   } // генерация html Колонок
 
 
@@ -302,7 +301,7 @@ var TextBlock = /*#__PURE__*/function (_Block4) {
   function TextBlock(value, options) {
     _classCallCheck(this, TextBlock);
 
-    return _super4.call(this, 'text', value, options);
+    return _super4.call(this, value, options);
   } // генерация html Параграфа
 
 

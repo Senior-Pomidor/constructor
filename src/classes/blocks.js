@@ -1,9 +1,8 @@
-import {col, css, row} from '../utils.js'
+import {row, col, css} from '../utils.js'
 
 // класс базового блока
 class Block {
-	constructor(type, value, options) {
-		this.type = type
+	constructor(value, options) {
 		this.value = value
 		this.options = options
 	}
@@ -18,7 +17,7 @@ class Block {
 export class TitleBlock extends Block {
 	constructor (value, options) {
 		// вызывает конструктор класса Block
-		super('title', value, options)
+		super(value, options)
 	}
 
 	// генерация html Заголовка
@@ -31,7 +30,7 @@ export class TitleBlock extends Block {
 // класс картинки унаследованный от класса Block
 export class ImageBlock extends Block {
 	constructor(value, options) {
-		super('image', value, options)
+		super(value, options)
 	}
 
 	// генерация html Картинки
@@ -44,7 +43,7 @@ export class ImageBlock extends Block {
 // класс колонок унаследованный от класса Block
 export class ColumnsBlock extends Block {
 	constructor(value, options) {
-		super('columns', value, options)
+		super(value, options)
 	}
 
 	// генерация html Колонок
@@ -61,7 +60,7 @@ export class ColumnsBlock extends Block {
 // класс параграфа унаследованный от класса Block
 export class TextBlock extends Block {
 	constructor(value, options) {
-		super('text', value, options)
+		super(value, options)
 	}
 
 	// генерация html Параграфа
