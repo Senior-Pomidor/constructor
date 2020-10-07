@@ -156,7 +156,12 @@ var model = [{
       padding: '2rem 0',
       display: 'flex',
       'justify-content': 'center'
-    }
+    },
+    imageStyles: {
+      width: '500px',
+      height: 'auto'
+    },
+    alt: ''
   }
 }, {
   // колонки
@@ -253,7 +258,12 @@ function columns(block) {
 
 
 function image(block) {
-  return (0, _utils.row)("<img src=\"".concat(block.value, "\" alt=\"\" />"), (0, _utils.css)(block.options.styles));
+  var _block$options2 = block.options,
+      is = _block$options2.imageStyles,
+      _block$options2$alt = _block$options2.alt,
+      alt = _block$options2$alt === void 0 ? '' : _block$options2$alt,
+      styles = _block$options2.styles;
+  return (0, _utils.row)("<img src=\"".concat(block.value, "\" alt=\"").concat(alt, "\" style=\"").concat((0, _utils.css)(is), "\" />"), (0, _utils.css)(styles));
 } // объект с функциями генерации html блоков
 
 

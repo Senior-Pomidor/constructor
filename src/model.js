@@ -29,7 +29,12 @@ export const model = [
 				padding: '2rem 0',
 				display: 'flex',
 				'justify-content': 'center'
-			}
+			},
+			imageStyles: {
+				width: '500px',
+				height: 'auto'
+			},
+			alt: ''
 		}
 	},
 	{
