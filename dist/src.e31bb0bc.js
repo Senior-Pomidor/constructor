@@ -494,13 +494,28 @@ exports.Sidebar = void 0;
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-// Класс сайдбара с инструментами конструктора сайтов
-var Sidebar = function Sidebar(selector) {
-  _classCallCheck(this, Sidebar);
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
-  this.$element = document.querySelector(selector);
-  this.$element.insertAdjacentHTML('afterbegin', '<h1>test<h1/>');
-};
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+// Класс сайдбара с инструментами конструктора сайтов
+var Sidebar = /*#__PURE__*/function () {
+  function Sidebar(selector) {
+    _classCallCheck(this, Sidebar);
+
+    this.$element = document.querySelector(selector);
+    this.$element.insertAdjacentHTML('afterbegin', this.template);
+  }
+
+  _createClass(Sidebar, [{
+    key: "template",
+    get: function get() {
+      return '<h1>test<h1/>';
+    }
+  }]);
+
+  return Sidebar;
+}();
 
 exports.Sidebar = Sidebar;
 },{}],"index.js":[function(require,module,exports) {
