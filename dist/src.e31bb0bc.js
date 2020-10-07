@@ -181,11 +181,17 @@ function col(content) {
 
 function css() {
   var styles = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  var keys = Object.keys(styles);
-  var styles_array = keys.map(function (key) {
+
+  // const keys = Object.keys(styles)
+  // const styles_array = keys.map(key => {
+  // 	return `${key}: ${styles[key]}`
+  // })
+  // return styles_array.join(';')
+  var toString = function toString(key) {
     return "".concat(key, ": ").concat(styles[key]);
-  });
-  return styles_array.join(';');
+  };
+
+  return Object.keys(styles).map(toString).join(';');
 }
 },{}],"templates.js":[function(require,module,exports) {
 "use strict";
