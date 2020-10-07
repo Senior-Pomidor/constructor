@@ -147,6 +147,10 @@ function css() {
   // 	return `${key}: ${styles[key]}`
   // })
   // return styles_array.join(';')
+  if (typeof styles === 'string') {
+    return styles;
+  }
+
   var toString = function toString(key) {
     return "".concat(key, ": ").concat(styles[key]);
   };
@@ -541,11 +545,12 @@ var Sidebar = /*#__PURE__*/function () {
 
       var newBlock = type === 'text' ? new _blocks.TextBlock(value, {
         styles: styles
-      }) : new TitleBlock(value, {
+      }) : new _blocks.TitleBlock(value, {
         styles: styles
       }); // console.log(newBlock)
 
-      this.update(newBlock);
+      this.update(newBlock); // очистка формы
+
       event.target.value.value = '';
       event.target.styles.value = '';
     }

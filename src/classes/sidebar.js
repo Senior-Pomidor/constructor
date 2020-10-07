@@ -1,5 +1,5 @@
 import { block } from '../utils.js'
-import { TextBlock } from './blocks.js'
+import { TextBlock, TitleBlock } from './blocks.js'
 // Класс сайдбара с инструментами конструктора сайтов
 export class Sidebar {
 	constructor(selector, updateCallback) {
@@ -41,6 +41,7 @@ export class Sidebar {
 		// console.log(newBlock)
 		this.update(newBlock)
 
+		// очистка формы
 		event.target.value.value = ''
 		event.target.styles.value = ''
 	}	
