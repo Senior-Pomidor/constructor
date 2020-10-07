@@ -128,6 +128,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.row = row;
 exports.col = col;
 exports.css = css;
+exports.block = block;
 
 function row(content) {
   var styles = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
@@ -151,6 +152,10 @@ function css() {
   };
 
   return Object.keys(styles).map(toString).join(';');
+}
+
+function block(type) {
+  return "\n\t\t<form name=\"".concat(type, "\">\n\t\t\t<h5>").concat(type, "</h5>\n\t\t\t<div class=\"form-group\">\n\t\t\t\t<input class=\"form-control form-control-sm\" name=\"value\" placeholder=\"value\">\n\t\t\t</div>\n\t\t\t<div class=\"form-group\">\n\t\t\t\t<input class=\"form-control form-control-sm\" name=\"styles\" placeholder=\"styles\">\n\t\t\t</div>\n\t\t\t<button type=\"submit\" class=\"btn btn-primary btn-sm\">\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C</button>\n\t\t</form>\n\t\t<hr />\n\t");
 }
 },{}],"classes/blocks.js":[function(require,module,exports) {
 "use strict";
@@ -490,8 +495,9 @@ module.hot.accept(reloadCSS);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.block = block;
 exports.Sidebar = void 0;
+
+var _utils = require("../utils.js");
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -516,7 +522,7 @@ var Sidebar = /*#__PURE__*/function () {
   }, {
     key: "template",
     get: function get() {
-      return '<h1>test<h1/>';
+      return [(0, _utils.block)('text'), (0, _utils.block)('title')].join('');
     }
   }]);
 
@@ -524,11 +530,7 @@ var Sidebar = /*#__PURE__*/function () {
 }();
 
 exports.Sidebar = Sidebar;
-
-function block(type) {
-  return "\n\t\t<form name=\"".concat(type, "\">\n\t\t\t<h5>").concat(type, "</h5>\n\t\t\t<div class=\"form-group\">\n\t\t\t\t<input class=\"form-control form-control-sm\" name=\"value\" placeholder=\"value\">\n\t\t\t</div>\n\t\t\t<div class=\"form-group\">\n\t\t\t\t<input class=\"form-control form-control-sm\" name=\"styles\" placeholder=\"styles\">\n\t\t\t</div>\n\t\t\t<button type=\"submit\" class=\"btn btn-primary btn-sm\">\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C</button>\n\t\t</form>\n\t\t<hr />\n\t");
-}
-},{}],"index.js":[function(require,module,exports) {
+},{"../utils.js":"utils.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _model = require("./model.js");
