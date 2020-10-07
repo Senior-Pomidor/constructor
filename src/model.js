@@ -1,4 +1,5 @@
 import image from './assets/image.png' //путь до картинки
+import { Block } from './classes/blocks.js'
 
 const text = `
 Лайк и подписка <a href="https://www.instagram.com/sugarbob99/" target="_blank">sugarbob99</a>

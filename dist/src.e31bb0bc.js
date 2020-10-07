@@ -119,6 +119,25 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   return newRequire;
 })({"assets/image.png":[function(require,module,exports) {
 module.exports = "/image.90ac9039.png";
+},{}],"classes/blocks.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Block = void 0;
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Block = function Block(type, value, options) {
+  _classCallCheck(this, Block);
+
+  this.type = type;
+  this.value = value;
+  this.options = options;
+};
+
+exports.Block = Block;
 },{}],"model.js":[function(require,module,exports) {
 "use strict";
 
@@ -128,6 +147,8 @@ Object.defineProperty(exports, "__esModule", {
 exports.model = void 0;
 
 var _image = _interopRequireDefault(require("./assets/image.png"));
+
+var _blocks = require("./classes/blocks.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -188,7 +209,7 @@ var model = [{
   }
 }];
 exports.model = model;
-},{"./assets/image.png":"assets/image.png"}],"utils.js":[function(require,module,exports) {
+},{"./assets/image.png":"assets/image.png","./classes/blocks.js":"classes/blocks.js"}],"utils.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -407,7 +428,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49906" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49868" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
