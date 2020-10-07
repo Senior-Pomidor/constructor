@@ -245,7 +245,20 @@ var ImageBlock = /*#__PURE__*/function (_Block2) {
     _classCallCheck(this, ImageBlock);
 
     return _super2.call(this, 'image', value, options);
-  }
+  } // генерация html Картинки
+
+
+  _createClass(ImageBlock, [{
+    key: "toHTML",
+    value: function toHTML() {
+      var _this$options2 = this.options,
+          is = _this$options2.imageStyles,
+          _this$options2$alt = _this$options2.alt,
+          alt = _this$options2$alt === void 0 ? '' : _this$options2$alt,
+          styles = _this$options2.styles;
+      return (0, _utils.row)("<img src=\"".concat(this.value, "\" alt=\"").concat(alt, "\" style=\"").concat((0, _utils.css)(is), "\" />"), (0, _utils.css)(styles));
+    }
+  }]);
 
   return ImageBlock;
 }(Block); // класс колонок унаследованный от класса Block
@@ -262,7 +275,18 @@ var ColumnsBlock = /*#__PURE__*/function (_Block3) {
     _classCallCheck(this, ColumnsBlock);
 
     return _super3.call(this, 'columns', value, options);
-  }
+  } // генерация html Колонок
+
+
+  _createClass(ColumnsBlock, [{
+    key: "toHTML",
+    value: function toHTML() {
+      var html = this.value.map(_utils.col).join(''); // col каждый раз будет вызываться с новым параметром
+
+      return (0, _utils.row)(html, (0, _utils.css)(this.options.styles)); // вывод элементов массива в строку разделяется запятыми
+      // .join('') это устраняет
+    }
+  }]);
 
   return ColumnsBlock;
 }(Block); // класс параграфа унаследованный от класса Block
@@ -279,7 +303,15 @@ var TextBlock = /*#__PURE__*/function (_Block4) {
     _classCallCheck(this, TextBlock);
 
     return _super4.call(this, 'text', value, options);
-  }
+  } // генерация html Параграфа
+
+
+  _createClass(TextBlock, [{
+    key: "toHTML",
+    value: function toHTML() {
+      return (0, _utils.row)((0, _utils.col)("<p>\n\t\t\t".concat(block.value, "\n\t\t</p>")), (0, _utils.css)(block.options.styles));
+    }
+  }]);
 
   return TextBlock;
 }(Block);

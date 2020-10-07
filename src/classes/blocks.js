@@ -33,6 +33,12 @@ export class ImageBlock extends Block {
 	constructor(value, options) {
 		super('image', value, options)
 	}
+
+	// генерация html Картинки
+	toHTML() {
+		const { imageStyles: is, alt = '', styles } = this.options
+		return row(`<img src="${this.value}" alt="${alt}" style="${css(is)}" />`, css(styles))
+	}
 }
 
 // класс колонок унаследованный от класса Block
@@ -40,11 +46,28 @@ export class ColumnsBlock extends Block {
 	constructor(value, options) {
 		super('columns', value, options)
 	}
+
+	// генерация html Колонок
+	toHTML() {
+		const html = this.value.map(col).join('')
+		// col каждый раз будет вызываться с новым параметром
+	
+		return row(html, css(this.options.styles))
+		// вывод элементов массива в строку разделяется запятыми
+		// .join('') это устраняет
+	}
 }
 
 // класс параграфа унаследованный от класса Block
 export class TextBlock extends Block {
 	constructor(value, options) {
 		super('text', value, options)
+	}
+
+	// генерация html Параграфа
+	toHTML() {
+		return row(col(`<p>
+			${block.value}
+		</p>`), css(block.options.styles))
 	}
 }
